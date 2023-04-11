@@ -4,6 +4,7 @@ import './style.css';
 import hotBg from '/assets/img/hot.png';
 import coldBg from '/assets/img/cold.png';
 import { getFormattedWeatherData } from './WeatherService';
+import { UilSearch } from '@iconscout/react-unicons';
 
 const App = () => {
   const [city, setCity] = useState('Paris')
@@ -40,6 +41,7 @@ const App = () => {
     }
   }
 
+
   return (
     <div className='app' style={{backgroundImage: `url(${bg})`}}>
       <div className="overlay">
@@ -48,6 +50,7 @@ const App = () => {
             <div className="container">
             <div className="section section__inputs">
               <input onKeyDown={enterKeyPressed} type="text" name='city' placeholder='Enter city...' />
+              <UilSearch size={25} className="uilSearch" />
               <button onClick={(e) => handleUnitsClick(e)}>°C</button>
             </div>
             <div className="section section__temperature">

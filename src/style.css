@@ -35,7 +35,19 @@
 
 }
 
-/*Top*/
+/***Acá comienza la edición del componente App.jsx***/
+
+
+.uilSearch{
+    transition: transform 0.5s;
+}
+
+
+.uilSearch:hover{
+    cursor: pointer;
+    transition: ease-out 0.3s;
+    transform: scale(1.25);
+}
 
 .section{
     width: 100%;
