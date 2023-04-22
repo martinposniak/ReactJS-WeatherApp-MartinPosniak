@@ -1,27 +1,42 @@
 import { useEffect, useState } from 'react';
 import Descriptions from './components/Descriptions';
 import './style.css';
-import hotBg from '/assets/img/hot.png';
-import coldBg from '/assets/img/cold.png';
+import hotBg from '/assets/img/sunny-day.png';
+import coldBg from '/assets/img/winter-day.png';
 import { getFormattedWeatherData } from './WeatherService';
 import { UilSearch } from '@iconscout/react-unicons';
+import aFewClouds from '/assets/img/a-few-clouds.png';
+import sunnyDay from '/assets/img/sunny-day.png';
 
 const App = () => {
   const [city, setCity] = useState('Paris')
   const [weather, setWeather] = useState(null);
   const [units, setUnits] = useState('metric');
   const [bg, setBg] = useState(hotBg);
+  const [cloudy, setCloudy] = useState(sunnyDay);
 
   useEffect(() =>{
     const fetchWeatherData = async () => {
       const data = await getFormattedWeatherData(city, units)
       setWeather(data);
+      console.log(data);
 
       // dynamic bg
       const threshold = units === 'metric' ? 20 : 60;
       if(data.temp <= threshold) setBg(coldBg)
       else setBg(hotBg); 
+
+
+      const nublado = weather === weather.description ? 'Clear Sky' : 'Few Clouds';
+
+      if(data.description === nublado) {
+        setCloudy(aFewClouds)
+      } else{
+        setCloudy(sunnyDay)
+      }
     }
+
+
 
     fetchWeatherData();
   }, [units, city])
